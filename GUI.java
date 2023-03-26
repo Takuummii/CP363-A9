@@ -365,11 +365,12 @@ public class GUI implements ItemListener {
             public void actionPerformed(ActionEvent e) {
                 String input = JOptionPane.showInputDialog(frame, "Enter info with fields separated by commas");
                 String current = dropdown.getItemAt(dropdown.getSelectedIndex());
+                String[] inputlist = input.replaceAll("'","").split(",");
                 String command = "INSERT INTO " + current + " VALUES (" + input + ")"  ;
                 try {
                 PreparedStatement statement = con.prepareStatement(command);
                 statement.execute();
-                mymodel.addRow(mytabs);
+                mymodel.addRow(inputlist);
                 }
                 catch(Exception ex) {
 
